@@ -1,0 +1,33 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}Pricing — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="pricing-area sky-bg section-padding">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>Plans</h6>
+            <h2>Engagement models</h2>
+        </div>
+        <div class="row no-gutters justify-content-center">
+            {% for plan in plans %}
+            <div class="col-xl-4 col-lg-4 col-md-6 mt-30">
+                <div class="single-pricing-box">
+                    <div class="pricing-head">
+                        <h4 class="sub-title">{{ plan.name }}</h4>
+                        <h2 class="price"><span>$</span>{{ plan.amount }}</h2>
+                        <p>{{ plan.period }}</p>
+                    </div>
+                    <ul>
+                        {% for f in plan.features %}
+                        <li><i class="las la-check"></i> {{ f }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'plast4ce:plast4ce_contact' %}" class="site-btn">Contact us</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

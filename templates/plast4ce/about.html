@@ -1,0 +1,29 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}About — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="about-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 wow fadeInUp" data-wow-delay=".2s">
+                <div class="about-content-wrap">
+                    <div class="section-title">
+                        <p>{{ division_tagline }}</p>
+                        <h2>About {{ site_name }}</h2>
+                    </div>
+                    <div class="about-content">
+                        <p class="highlight">We help organizations capture more value from recovered materials—without compromising safety or compliance.</p>
+                        <p>From plastics and paper to metals and e-waste, our playbooks connect collection, processing, and reporting so you can show real diversion outcomes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 wow fadeInLeft" data-wow-delay=".4s">
+                <div class="about-img">
+                    <img src="{% static 'plast4ce/img/about/about.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

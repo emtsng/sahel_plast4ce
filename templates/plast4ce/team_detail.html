@@ -1,0 +1,21 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}{{ member.name }} — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="team-details-area section-padding">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <img src="{% static member.image %}" class="img-fluid" alt="{{ member.name }}">
+            </div>
+            <div class="col-lg-7">
+                <h2>{{ member.name }}</h2>
+                <p class="text-muted">{{ member.role }}</p>
+                <p>{{ member.bio }}</p>
+                <a href="{% url 'plast4ce:plast4ce_team' %}" class="main-btn">Back to team</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

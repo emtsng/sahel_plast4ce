@@ -1,0 +1,191 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}{{ site_name }} — {{ division_tagline }}{% endblock %}
+{% block content %}
+<div class="homepage-slides">
+    <div class="single-slide-item">
+        <div class="image-layer" style="background-image: url({% static 'plast4ce/img/slider/slide-1.jpg' %});">
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-8 col-lg-8 wow fadeInUp animated" data-wow-delay=".2s">
+                    <div class="hero-area-content">
+                        <div class="section-title">
+                            <h6>{{ site_name }}</h6>
+                            <h1>{{ division_tagline }}</h1>
+                        </div>
+                        <p>Recycling, recovery, and circular programs with measurable diversion—built for municipalities, industry, and partners who need proof, not promises.</p>
+                        <a href="{% url 'plast4ce:plast4ce_about' %}" class="main-btn primary mt-30">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about-area section-padding">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay=".2s">
+                <div class="about-content-wrap">
+                    <div class="section-title">
+                        <p>Waste recovery &amp; circular materials</p>
+                        <h2 class="mt-0">Sahel Plast4ce at a glance</h2>
+                    </div>
+                    <div class="about-content">
+                        <p class="highlight">We design collection and processing pathways that keep materials in use—transparently tracked from pickup to end market.</p>
+                        <p>Whether you are scaling a regional MRF or closing the loop on industrial scrap, we align operations, compliance, and reporting.</p>
+                        <div class="row mt-30">
+                            {% for s in stats %}
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                <div class="featured-area">
+                                    <div class="featured-icon">
+                                        <i class="{{ s.icon_class }}"></i>
+                                    </div>
+                                    <div class="featured-content">
+                                        <div class="featured-title">
+                                            <h5>{{ s.heading }}<br><span class="counting" data-counterup-nums="{{ s.count }}">{{ s.count }}</span></h5>
+                                            <small>{{ s.sub }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6 wow fadeInLeft" data-wow-delay=".4s">
+                <div class="about-img">
+                    <img src="{% static 'plast4ce/img/choose_us.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="service-area sky-bg section-padding">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>What we do</h6>
+            <h2>Featured service</h2>
+        </div>
+        <div class="row justify-content-center">
+            {% for s in services %}
+            <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp">
+                <div class="services-two_single">
+                    <div class="services-two_img-box">
+                        <div class="services-two_img">
+                            <img src="{% static s.image %}" alt="">
+                        </div>
+                        <div class="services-two_icon">
+                            <img src="{% static s.list_icon %}" alt="">
+                        </div>
+                    </div>
+                    <div class="services-two_content">
+                        <h3 class="services-two_title"><a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}">{{ s.title }}</a></h3>
+                        <p class="services-two_text">{{ s.excerpt }}</p>
+                        <div class="services-two_bottom">
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_btn">Read more</a>
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_arrow"><span class="icon-right-arrow"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="project-area gray-bg section-padding pb-80">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>Impact</h6>
+            <h2>Highlighted project</h2>
+        </div>
+        <div class="project-wrap-2">
+            <div class="row justify-content-center">
+                {% for p in projects %}
+                <div class="col-xl-4 col-lg-4 col-md-6 col-12">
+                    <div class="project-single">
+                        <div class="project-img">
+                            <img src="{% static p.image %}" alt="">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">
+                                <h4>{{ p.title }}</h4>
+                            </div>
+                            <div class="project-desc">
+                                <p>{{ p.excerpt }}</p>
+                            </div>
+                            <div class="project-more">
+                                <a class="main-btn border-btn" href="{% url 'plast4ce:plast4ce_project_detail' p.id %}">Explore <i class="las la-arrow-alt-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="testimonial-area sky-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2 text-center">
+                <div class="section-title">
+                    <h6>Testimonial</h6>
+                    <h2>What partners say</h2>
+                </div>
+            </div>
+        </div>
+        {% for t in testimonials %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="testimonial-inner d-flex flex-column flex-md-row align-items-center gap-4">
+                    <div class="testimonial-img">
+                        <img src="{% static t.image %}" alt="">
+                    </div>
+                    <div class="testimonial-content text-start">
+                        <p>{{ t.quote }}</p>
+                        <div class="testimonial-meta">
+                            <h6>{{ t.name }}</h6>
+                            <span>{{ t.role }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="blog-area section-padding">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>Blog</h6>
+            <h2>Latest insight</h2>
+        </div>
+        <div class="row justify-content-center">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInLeft">
+                <div class="single-blog-item">
+                    <div class="blog-bg">
+                        <img src="{% static post.image %}" alt="">
+                        <span class="blog-date">{{ post.date_display|truncatewords:1 }}</span>
+                    </div>
+                    <div class="blog-content">
+                        <p class="blog-meta"><i class="las la-user-circle"></i>{{ post.author }}</p>
+                        <h5><a href="{% url 'plast4ce:plast4ce_blog_detail' post.id %}">{{ post.title }}</a></h5>
+                        <p>{{ post.excerpt }}</p>
+                        <a href="{% url 'plast4ce:plast4ce_blog_detail' post.id %}" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

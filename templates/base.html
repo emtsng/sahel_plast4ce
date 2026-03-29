@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="{% block meta_author %}{{ site_name }}{% endblock %}">
+    {% block meta_extra %}{% endblock %}
+    <link rel="icon" href="{% block favicon_href %}{% static 'plast4ce/img/favicon.png' %}{% endblock %}" type="image/png">
+    <title>{% block title %}{{ site_name }}{% endblock %}</title>
+    {% block stylesheet_bundle %}{% endblock %}
+    {% block head_scripts %}{% endblock %}
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+{% block preloader_section %}{% endblock %}
+{% block layout_header %}{% endblock %}
+{% block content %}{% endblock %}
+{% block layout_footer %}{% endblock %}
+{% block layout_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}Services — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="service-area sky-bg section-padding">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>Services</h6>
+            <h2>Recovery programs</h2>
+        </div>
+        <div class="row justify-content-center">
+            {% for s in services %}
+            <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp">
+                <div class="services-two_single">
+                    <div class="services-two_img-box">
+                        <div class="services-two_img">
+                            <img src="{% static s.image %}" alt="">
+                        </div>
+                        <div class="services-two_icon">
+                            <img src="{% static s.list_icon %}" alt="">
+                        </div>
+                    </div>
+                    <div class="services-two_content">
+                        <h3 class="services-two_title"><a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}">{{ s.title }}</a></h3>
+                        <p class="services-two_text">{{ s.excerpt }}</p>
+                        <div class="services-two_bottom">
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_btn">Read more</a>
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_arrow"><span class="icon-right-arrow"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

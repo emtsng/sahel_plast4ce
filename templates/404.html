@@ -1,0 +1,24 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}Page not found — {{ site_name }}{% endblock %}
+{% block content %}
+<div class="breadcroumb-area bread-bg">
+    <div class="overlay-2"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcroumb-title text-center">
+                    <h1>404</h1>
+                    <h6>Page not found</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section-padding text-center">
+    <div class="container">
+        <p>The page you requested is not available.</p>
+        <a href="{% url 'plast4ce:plast4ce_home' %}" class="main-btn primary">Back to home</a>
+    </div>
+</div>
+{% endblock %}

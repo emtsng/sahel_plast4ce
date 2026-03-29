@@ -1,0 +1,18 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}{{ project.title }} — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="project-details-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <img src="{% static project.image %}" class="img-fluid mb-4" alt="">
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.excerpt }}</p>
+                <p>{{ project.body }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

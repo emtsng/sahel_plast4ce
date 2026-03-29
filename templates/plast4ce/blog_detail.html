@@ -1,0 +1,20 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}{{ post.title }} — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="blog-details-area section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <img src="{% static post.image %}" class="img-fluid mb-4" alt="">
+                <p class="blog-meta"><i class="las la-user-circle"></i>{{ post.author }} <i class="las la-calendar"></i>{{ post.date_display }}</p>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.excerpt }}</p>
+                <p>{{ site_name }} helps teams document streams, prove diversion, and choose processors with aligned environmental standards.</p>
+                <a href="{% url 'plast4ce:plast4ce_blog' %}" class="main-btn mt-3">Back to blog</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

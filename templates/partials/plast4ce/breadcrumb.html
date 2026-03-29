@@ -1,0 +1,23 @@
+{% load static %}
+<div class="breadcroumb-area bread-bg">
+    <div class="overlay-2"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcroumb-title text-center">
+                    <h1>{{ page_heading }}</h1>
+                    <h6>
+                        {% for url_name, label in breadcrumbs %}
+                            {% if url_name %}
+                            <a href="{% url url_name %}">{{ label }}</a>
+                            {% else %}
+                            {{ label }}
+                            {% endif %}
+                            {% if not forloop.last %} / {% endif %}
+                        {% endfor %}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

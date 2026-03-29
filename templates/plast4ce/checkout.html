@@ -1,0 +1,28 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}Checkout — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+<div class="checkout-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <h3>Billing (demo)</h3>
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <div class="mb-3"><input type="text" class="form-control" name="name" placeholder="Full name"></div>
+                    <div class="mb-3"><input type="email" class="form-control" name="email" placeholder="Email"></div>
+                    <button type="submit" class="main-btn">Place order (demo)</button>
+                </form>
+            </div>
+            <div class="col-lg-5">
+                <h3>Order summary</h3>
+                {% for line in cart_lines %}
+                <p class="d-flex justify-content-between"><span>{{ line.title }}</span><span>{{ line.price }}</span></p>
+                {% endfor %}
+                <p class="small text-muted">Connect a payment provider when you go live.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

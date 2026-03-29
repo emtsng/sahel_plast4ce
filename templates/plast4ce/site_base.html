@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block meta_extra %}{% if meta_description %}
+    <meta name="description" content="{{ meta_description }}">
+{% endif %}{% endblock %}
+{% block favicon_href %}{% static 'plast4ce/img/favicon.png' %}{% endblock %}
+{% block stylesheet_bundle %}
+    <link href="{% static 'plast4ce/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/line-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/barfiller.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/flaticon.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/nice-select.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'plast4ce/css/responsive.css' %}" rel="stylesheet">
+{% endblock %}
+{% block head_scripts %}
+    <script src="{% static 'plast4ce/js/jquery-1.12.4.min.js' %}"></script>
+{% endblock %}
+{% block preloader_section %}<div class="preloader"></div>{% endblock %}
+{% block layout_header %}{% include 'partials/plast4ce/header.html' %}{% endblock %}
+{% block layout_footer %}{% include 'partials/plast4ce/footer.html' %}{% endblock %}
+{% block layout_scripts %}{% include 'partials/plast4ce/scripts.html' %}{% endblock %}
