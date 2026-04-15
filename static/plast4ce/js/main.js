@@ -57,16 +57,13 @@
 		arrows: true,
 		infinite: true,
 		autoplay: true,
-		autoplaySpeed: 8000,
-		dots: false,
+		autoplaySpeed: 7000,
+		dots: true,
 		fade: true,
-		cssEase: 'linear',    
-		prevArrow: '<button type="button" class="slick-prev"><i class="las la-angle-left"></i></button>',
-		  nextArrow: '<button type="button" class="slick-next"><i class="las la-angle-right"></i></button>',
-		settings: {
-			dots: false,
-			arrows: false,
-		},
+		cssEase: 'linear',
+		pauseOnHover: true,
+		prevArrow: '<button type="button" class="slick-prev" aria-label="Previous slide"><i class="las la-angle-left"></i></button>',
+		nextArrow: '<button type="button" class="slick-next" aria-label="Next slide"><i class="las la-angle-right"></i></button>',
 		responsive: [
 		  {
 			breakpoint: 992,

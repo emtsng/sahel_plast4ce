@@ -11,11 +11,11 @@
         </div>
         <div class="row justify-content-center">
             {% for s in services %}
-            <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                 <div class="services-two_single">
                     <div class="services-two_img-box">
                         <div class="services-two_img">
-                            <img src="{% static s.image %}" alt="">
+                            <img src="{% static s.image %}" alt="{{ s.title }}">
                         </div>
                         <div class="services-two_icon">
                             <img src="{% static s.list_icon %}" alt="">
@@ -25,8 +25,8 @@
                         <h3 class="services-two_title"><a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}">{{ s.title }}</a></h3>
                         <p class="services-two_text">{{ s.excerpt }}</p>
                         <div class="services-two_bottom">
-                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_btn">Read more</a>
-                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_arrow"><span class="icon-right-arrow"></span></a>
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-two_btn">Read more</a>
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-two_arrow"><span class="icon-right-arrow"></span></a>
                         </div>
                     </div>
                 </div>

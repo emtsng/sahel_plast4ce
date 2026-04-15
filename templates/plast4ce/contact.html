@@ -13,12 +13,20 @@
                     </div>
                     <div class="contact-meta-info">
                         <div class="contact-single-info">
-                            <i class="las la-envelope"></i><h6>Email</h6>
-                            <p>hello@sahelplast4ce.example</p>
+                            <i class="las la-building"></i><h6>Parent company</h6>
+                            <p>{{ parent_company }}</p>
+                        </div>
+                        <div class="contact-single-info">
+                            <i class="las la-map-marker"></i><h6>Address</h6>
+                            <p>{{ contact_address }}</p>
                         </div>
                         <div class="contact-single-info">
                             <i class="las la-phone"></i><h6>Phone</h6>
-                            <p>+1 (800) 555-0142</p>
+                            <p><a href="tel:{{ contact_phone_tel }}">{{ contact_phone }}</a></p>
+                        </div>
+                        <div class="contact-single-info">
+                            <i class="las la-globe"></i><h6>Website</h6>
+                            <p><a href="{{ company_website_url }}" rel="noopener noreferrer">{{ company_website_label }}</a></p>
                         </div>
                     </div>
                 </div>

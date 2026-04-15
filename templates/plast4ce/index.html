@@ -3,25 +3,27 @@
 {% block title %}{{ site_name }} — {{ division_tagline }}{% endblock %}
 {% block content %}
 <div class="homepage-slides">
+    {% for slide in hero_slides %}
     <div class="single-slide-item">
-        <div class="image-layer" style="background-image: url({% static 'plast4ce/img/slider/slide-1.jpg' %});">
+        <div class="image-layer" style="background-image: url('{% static slide.image %}');">
             <div class="overlay"></div>
         </div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-xl-8 col-lg-8 wow fadeInUp animated" data-wow-delay=".2s">
+                <div class="col-xl-8 col-lg-8">
                     <div class="hero-area-content">
                         <div class="section-title">
-                            <h6>{{ site_name }}</h6>
-                            <h1>{{ division_tagline }}</h1>
+                            <h6>{{ slide.eyebrow }}</h6>
+                            <h1>{{ slide.title }}</h1>
                         </div>
-                        <p>Recycling, recovery, and circular programs with measurable diversion—built for municipalities, industry, and partners who need proof, not promises.</p>
-                        <a href="{% url 'plast4ce:plast4ce_about' %}" class="main-btn primary mt-30">Learn more</a>
+                        <p>{{ slide.subtitle }}</p>
+                        <a href="{% url slide.cta_url_name %}" class="main-btn primary mt-30">{{ slide.cta_label }}</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 
 <div class="about-area section-padding">
@@ -30,12 +32,12 @@
             <div class="col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay=".2s">
                 <div class="about-content-wrap">
                     <div class="section-title">
-                        <p>Waste recovery &amp; circular materials</p>
-                        <h2 class="mt-0">Sahel Plast4ce at a glance</h2>
+                        <p>{{ home_about_label }}</p>
+                        <h2 class="mt-0">{{ home_about_title }}</h2>
                     </div>
                     <div class="about-content">
-                        <p class="highlight">We design collection and processing pathways that keep materials in use—transparently tracked from pickup to end market.</p>
-                        <p>Whether you are scaling a regional MRF or closing the loop on industrial scrap, we align operations, compliance, and reporting.</p>
+                        <p class="highlight">{{ home_about_highlight }}</p>
+                        <p>{{ home_about_body }}</p>
                         <div class="row mt-30">
                             {% for s in stats %}
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -73,11 +75,11 @@
         </div>
         <div class="row justify-content-center">
             {% for s in services %}
-            <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                 <div class="services-two_single">
                     <div class="services-two_img-box">
                         <div class="services-two_img">
-                            <img src="{% static s.image %}" alt="">
+                            <img src="{% static s.image %}" alt="{{ s.title }}">
                         </div>
                         <div class="services-two_icon">
                             <img src="{% static s.list_icon %}" alt="">
@@ -87,8 +89,8 @@
                         <h3 class="services-two_title"><a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}">{{ s.title }}</a></h3>
                         <p class="services-two_text">{{ s.excerpt }}</p>
                         <div class="services-two_bottom">
-                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_btn">Read more</a>
-                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-one_arrow"><span class="icon-right-arrow"></span></a>
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-two_btn">Read more</a>
+                            <a href="{% url 'plast4ce:plast4ce_service_detail' s.id %}" class="services-two_arrow"><span class="icon-right-arrow"></span></a>
                         </div>
                     </div>
                 </div>
@@ -162,7 +164,7 @@
     </div>
 </div>
 
-<div class="blog-area section-padding">
+<div class="b -area section-padding">
     <div class="container">
         <div class="section-title text-center">
             <h6>Blog</h6>

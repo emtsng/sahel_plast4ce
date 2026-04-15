@@ -4,13 +4,14 @@
         <div class="footer-up">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="logo">
+                    <div class="logo logo_footer">
                         <img src="{% static 'plast4ce/img/logo-white.png' %}" alt="{{ site_name }}">
                     </div>
                     <div class="contact-info">
-                        <p><b>Division:</b> {{ site_name }}</p>
+                        <p><b>Unit:</b> {{ site_name }} — {{ parent_company }}</p>
                         <p><b>Focus:</b> {{ division_tagline }}</p>
-                        <p><b>E-mail:</b> hello@sahelplast4ce.example</p>
+                        <p><b>Phone:</b> <a href="tel:{{ contact_phone_tel }}">{{ contact_phone }}</a></p>
+                        <p><b>Web:</b> <a href="{{ company_website_url }}" rel="noopener noreferrer">{{ company_website_label }}</a></p>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6 com-sm-12">
@@ -31,7 +32,7 @@
                             <h6>Programs</h6>
                             <ul>
                                 <li>
-                                    <a href="{% url 'plast4ce:plast4ce_service_detail' 1 %}">Plastic recovery</a>
+                                    <a href="{% url 'plast4ce:plast4ce_service_detail' 1 %}">Collection &amp; aggregation</a>
                                     <a href="{% url 'plast4ce:plast4ce_services' %}">All services</a>
                                 </li>
                             </ul>

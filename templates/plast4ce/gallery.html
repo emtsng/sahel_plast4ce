@@ -1,0 +1,67 @@
+{% extends "plast4ce/site_base.html" %}
+{% load static %}
+{% block title %}Gallery — {{ site_name }}{% endblock %}
+{% block content %}
+{% include 'partials/plast4ce/breadcrumb.html' %}
+
+<div class="project-area gray-bg section-padding pb-80">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>Gallery</h6>
+            <h2>Photos</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            {% for img in gallery_images %}
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-4">
+                <a class="gallery-lightbox d-block" href="{% static img.src %}" title="{{ img.category }}">
+                    <div class="gallery-thumb">
+                        <img src="{% static img.src %}" class="img-fluid" alt="{{ img.alt }}">
+                    </div>
+                    <div class="gallery-meta mt-2">
+                        <small class="text-muted">{{ img.category }}</small>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="section-padding pt-0">
+    <div class="container">
+        <div class="section-title text-center">
+            <h6>Gallery</h6>
+            <h2>Videos</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            {% for v in gallery_videos %}
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
+                <div class="gallery-video-card">
+                    {% if v.youtube_id %}
+                    <a class="video-play-btn gallery-video-link" href="https://www.youtube-nocookie.com/embed/{{ v.youtube_id }}?rel=0&modestbranding=1">
+                        <div class="gallery-thumb">
+                            <img src="{% static v.thumb %}" class="img-fluid" alt="{{ v.title }}">
+                            <span class="gallery-play" aria-hidden="true"><i class="las la-play"></i></span>
+                        </div>
+                    </a>
+                    {% else %}
+                    <div class="gallery-thumb">
+                        <img src="{% static v.thumb %}" class="img-fluid" alt="{{ v.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="mt-2">
+                        <h6 class="mb-0">{{ v.title }}</h6>
+                        {% if not v.youtube_id %}
+                        <small class="text-muted">Add a YouTube ID to enable playback</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

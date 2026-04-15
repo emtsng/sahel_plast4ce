@@ -13,8 +13,13 @@
                         <h2>About {{ site_name }}</h2>
                     </div>
                     <div class="about-content">
-                        <p class="highlight">We help organizations capture more value from recovered materials—without compromising safety or compliance.</p>
-                        <p>From plastics and paper to metals and e-waste, our playbooks connect collection, processing, and reporting so you can show real diversion outcomes.</p>
+                        <p class="highlight">{{ about_intro }}</p>
+                        <p>{{ about_operations }}</p>
+                        <p>{{ about_context }}</p>
+                        <p><strong>Our vision.</strong> {{ vision_text }}</p>
+                        <p class="mt-3">
+                            <a href="{% static company_profile_pdf %}" class="main-btn primary" download>Download company profile (PDF)</a>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -1974,6 +1974,25 @@ input.form-control {
   color: #097e51;
 }
 
+/* Dropdown parent links: show caret (hidden on small screens; responsive.css shows sub-nav-toggler) */
+.main-menu .nav-link--has-submenu .nav-dropdown-caret {
+  display: inline-block;
+  font-size: 0.7em;
+  margin-left: 0.35em;
+  vertical-align: middle;
+  opacity: 0.85;
+  transition: transform 0.2s ease;
+}
+.main-menu li.nav-item:hover > .nav-link--has-submenu .nav-dropdown-caret {
+  transform: translateY(1px);
+}
+
+@media (max-width: 991px) {
+  .main-menu .nav-link--has-submenu .nav-dropdown-caret {
+    display: none;
+  }
+}
+
 /*Dropdown Menu */
 .sub-menu {
   position: absolute;
@@ -2245,6 +2264,14 @@ input.form-control {
   margin-left: 20px;
 }
 
+.logo_navbar {
+  width: 20% !important;
+}
+
+.logo_footer{
+  width: 30%;
+}
+
 .auto-container .icon-wrapper {
   border-left: none;
 }
@@ -2262,6 +2289,30 @@ input.form-control {
   z-index: 1;
   display: flex !important;
   align-items: center;
+}
+
+/* Hero carousel: per-slide photo from .image-layer (see index.html) */
+.homepage-slides .single-slide-item {
+  background-image: none;
+  background-color: #1b1b1b;
+}
+.homepage-slides .single-slide-item .image-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.homepage-slides .single-slide-item .image-layer .overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.55;
+}
+.homepage-slides .single-slide-item > .container {
+  position: relative;
+  z-index: 2;
 }
 @media (max-width: 767px) {
   .single-slide-item {
@@ -2459,6 +2510,46 @@ input.form-control {
   visibility: visible;
 }
 
+.homepage-slides .slick-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex !important;
+  justify-content: center;
+  gap: 10px;
+  z-index: 12;
+}
+.homepage-slides .slick-dots li {
+  margin: 0;
+  padding: 0;
+}
+.homepage-slides .slick-dots li button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  background: transparent;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.homepage-slides .slick-dots li button:before {
+  display: none;
+}
+.homepage-slides .slick-dots li.slick-active button {
+  background: #dfb163;
+  border-color: #dfb163;
+}
+.homepage-slides .slick-dots li button:hover {
+  border-color: #dfb163;
+}
+
 .hero-area {
   margin-top: -50px;
   position: relative;
@@ -2614,6 +2705,56 @@ input.form-control {
 }
 .about-img img {
   border-radius: 10px;
+}
+
+.about-img--video .about-video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #0d0d0d;
+}
+.about-img--video .about-video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.gallery-thumb {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.gallery-thumb img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+.gallery-lightbox:hover .gallery-thumb img,
+.gallery-video-link:hover .gallery-thumb img {
+  transform: scale(1.04);
+}
+.gallery-video-card h6 {
+  color: #024731;
+}
+.gallery-play {
+  position: absolute;
+  inset: auto auto 18px 18px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(9, 126, 81, 0.92);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-play i {
+  font-size: 22px;
+  margin-left: 2px;
 }
 
 .about-counter {
@@ -3046,6 +3187,22 @@ blockquote p {
 
 .services-two_single:hover .services-two_arrow {
   color: #097e51;
+}
+
+/* Four service cards per row: room for title + excerpt + actions */
+@media (min-width: 992px) {
+  .service-area .col-lg-3 .services-two_content {
+    padding: 32px 22px 26px;
+  }
+  .service-area .col-lg-3 .services-two_title,
+  .service-area .col-lg-3 .services-two_title a {
+    font-size: 19px;
+    line-height: 1.35;
+  }
+  .service-area .col-lg-3 .services-two_text {
+    font-size: 15px;
+    line-height: 1.55;
+  }
 }
 
 .service-note {
@@ -7462,6 +7619,83 @@ ul.contact-list li i {
     transform: translate(100%, 0);
   }
 }
+
+/* About — Why partner with Sahel Waste2Wealth (company profile) */
+.about-partner-why {
+  background: #f2efe8;
+  border-radius: 6px;
+  padding: 28px 28px 32px;
+  border: 1px solid rgba(2, 71, 49, 0.08);
+}
+.about-partner-why__header {
+  margin-bottom: 24px;
+}
+.about-partner-why__line1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #2c2c2c;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+.about-partner-why__line2-row {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+}
+.about-partner-why__accent {
+  flex: 0 0 3px;
+  min-height: 2.5rem;
+  background: #024731;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+.about-partner-why__line2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #097e51;
+  margin: 0;
+  line-height: 1.2;
+}
+.about-partner-why__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #ebe6dc;
+  border-radius: 4px;
+  padding: 22px 22px 22px 28px;
+}
+.about-partner-why__list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #0d5c3f;
+}
+.about-partner-why__list li:last-child {
+  margin-bottom: 0;
+}
+.about-partner-why__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #097e51;
+}
+.about-partner-why__list li strong {
+  color: #024731;
+  font-weight: 700;
+}
+
 /*
 
 

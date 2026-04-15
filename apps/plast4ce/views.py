@@ -1,13 +1,34 @@
 from django.http import Http404
 from django.shortcuts import render
 from apps.plast4ce.demo_content import (
+    ABOUT_CONTEXT,
+    ABOUT_INTRO,
+    ABOUT_OPERATIONS,
+    WHY_PARTNER_HEADING_LINE1,
+    WHY_PARTNER_HEADING_LINE2,
+    WHY_PARTNER_ITEMS,
     BLOG_POSTS,
+    COMPANY_PROFILE_PDF,
+    COMPANY_WEBSITE_LABEL,
+    COMPANY_WEBSITE_URL,
+    CONTACT_ADDRESS,
+    CONTACT_PHONE_DISPLAY,
+    CONTACT_PHONE_TEL,
+    HERO_SLIDES,
+    HOME_ABOUT_BODY,
+    HOME_ABOUT_HIGHLIGHT,
+    HOME_ABOUT_LABEL,
+    HOME_ABOUT_TITLE,
+    HOME_ABOUT_YOUTUBE_VIDEO_ID,
+    PARENT_COMPANY,
     PROJECT_ITEMS,
     SERVICE_ITEMS,
-    SHOP_PRODUCTS,
+    GALLERY_IMAGES,
+    GALLERY_VIDEOS,
     SITE_NAME,
     TAGLINE,
     TEAM_MEMBERS,
+    VISION_TEXT,
     get_by_id,
 )
 
@@ -16,6 +37,13 @@ def _base_context(**extra):
     ctx = {
         'site_name': SITE_NAME,
         'division_tagline': TAGLINE,
+        'parent_company': PARENT_COMPANY,
+        'contact_phone': CONTACT_PHONE_DISPLAY,
+        'contact_phone_tel': CONTACT_PHONE_TEL,
+        'contact_address': CONTACT_ADDRESS,
+        'company_website_url': COMPANY_WEBSITE_URL,
+        'company_website_label': COMPANY_WEBSITE_LABEL,
+        'company_profile_pdf': COMPANY_PROFILE_PDF,
     }
     ctx.update(extra)
     return ctx
@@ -25,15 +53,33 @@ def home(request):
     context = _base_context(
         nav_section='home',
         meta_description=(
-            'Sahel Plast4ce — recycling, recovery, and sustainability programs with transparent operations '
-            'and measurable diversion.'
+            f'{SITE_NAME} — plastic collection, sorting, washing, and recyclate supply for PET and PP, '
+            'aligned with Nigeria’s plastic policy and EPR. Operations in Gombe and Taraba.'
         ),
+        hero_slides=HERO_SLIDES,
+        home_about_label=HOME_ABOUT_LABEL,
+        home_about_title=HOME_ABOUT_TITLE,
+        home_about_highlight=HOME_ABOUT_HIGHLIGHT,
+        home_about_body=HOME_ABOUT_BODY,
+        home_about_youtube_video_id=HOME_ABOUT_YOUTUBE_VIDEO_ID,
         stats=[
             {
-                'icon_class': 'las la-recycle',
-                'count': 120,
-                'heading': 'Tons',
-                'sub': 'diverted monthly (demo metric)',
+                'icon_class': 'las la-users',
+                'count': 20,
+                'heading': 'Staff',
+                'sub': '60% women across facilities',
+            },
+            {
+                'icon_class': 'las la-map-marked-alt',
+                'count': 2,
+                'heading': 'States',
+                'sub': 'Gombe & Taraba hub operations',
+            },
+            {
+                'icon_class': 'las la-industry',
+                'count': 10,
+                'heading': 'Percent',
+                'sub': 'national plastic recycling rate context (under 10%)',
             },
         ],
         services=SERVICE_ITEMS,
@@ -43,10 +89,11 @@ def home(request):
         testimonials=[
             {
                 'quote': (
-                    'Sahel Plast4ce gave us clear reporting and cleaner streams—we finally trust the numbers.'
+                    'Sahel Plast4CE gives us traceable volumes and community-linked sourcing—aligned with '
+                    'our EPR reporting needs.'
                 ),
-                'name': 'Operations director',
-                'role': 'Industrial campus',
+                'name': 'Sustainability lead',
+                'role': 'Brand & packaging partner',
                 'image': 'plast4ce/img/testimonial/1.jpg',
             },
         ],
@@ -59,7 +106,17 @@ def about(request):
         nav_section='about',
         page_heading='About us',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'About')],
-        meta_description='Learn how Sahel Plast4ce advances recycling, recovery, and sustainability outcomes across the region.',
+        meta_description=(
+            f'About {SITE_NAME}: circular plastics unit of {PARENT_COMPANY}, operating in Gombe and Taraba '
+            'with collection through washing and flaking for PET and PP.'
+        ),
+        about_intro=ABOUT_INTRO,
+        about_operations=ABOUT_OPERATIONS,
+        about_context=ABOUT_CONTEXT,
+        vision_text=VISION_TEXT,
+        why_partner_heading_line1=WHY_PARTNER_HEADING_LINE1,
+        why_partner_heading_line2=WHY_PARTNER_HEADING_LINE2,
+        why_partner_items=WHY_PARTNER_ITEMS,
     )
     return render(request, 'plast4ce/about.html', context)
 
@@ -69,7 +126,10 @@ def contact(request):
         nav_section='contact',
         page_heading='Contact',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Contact')],
-        meta_description='Reach Sahel Plast4ce for collection, processing, and circularity partnerships.',
+        meta_description=(
+            f'Contact {SITE_NAME} at {CONTACT_ADDRESS}. Phone {CONTACT_PHONE_DISPLAY}. '
+            f'Parent group: {COMPANY_WEBSITE_LABEL}.'
+        ),
     )
     return render(request, 'plast4ce/contact.html', context)
 
@@ -79,11 +139,36 @@ def faq(request):
         nav_section='faq',
         page_heading='FAQ',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'FAQ')],
-        meta_description='Answers to common questions about Sahel Plast4ce services and coverage.',
+        meta_description=f'FAQ about {SITE_NAME}: materials, locations, EPR alignment, and partnerships.',
         faq_items=[
             {
-                'q': 'What regions do you cover?',
-                'a': 'We plan and execute corridor projects across the Sahel and neighboring trade routes.',
+                'q': 'Where does Sahel Plast4CE operate?',
+                'a': (
+                    'Collection, sorting, and processing are active in Gombe and Taraba States, with a roadmap '
+                    'to scale across Nigeria—supported by SAHEL Enerlog’s logistics and port links.'
+                ),
+            },
+            {
+                'q': 'Which plastics do you focus on?',
+                'a': (
+                    'Post-consumer plastics—mainly PET and PP—with sorted bales, washed flakes, and a roadmap to '
+                    'rPET and rPP pellets for converters.'
+                ),
+            },
+            {
+                'q': 'How do you align with national policy?',
+                'a': (
+                    'Our programme is anchored in Nigeria’s National Policy on Plastic Waste Management, the 5R '
+                    'hierarchy, EPR guidelines, and NDC commitments on waste and circular economy.'
+                ),
+            },
+            {
+                'q': 'How do reclaimers and communities participate?',
+                'a': (
+                    'Through Cluster Waste2Wealth schemes, community collection points, transparent pricing, basic '
+                    'PPE, and integration of reclaimers, women’s groups, and youth cooperatives as partners in the '
+                    'value chain.'
+                ),
             },
         ],
     )
@@ -95,7 +180,7 @@ def pricing(request):
         nav_section='pricing',
         page_heading='Pricing',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Pricing')],
-        meta_description='Engagement options for recycling, recovery, and sustainability programs with Sahel Plast4ce.',
+        meta_description=f'Engagement options for recycling, recovery, and sustainability programs with {SITE_NAME}.',
         plans=[
             {
                 'name': 'Collection pilot',
@@ -117,7 +202,7 @@ def services(request):
         nav_section='services',
         page_heading='Services',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Services')],
-        meta_description='Material recovery and recycling services from Sahel Plast4ce.',
+        meta_description=f'Material recovery and recycling services from {SITE_NAME}.',
         services=SERVICE_ITEMS,
     )
     return render(request, 'plast4ce/services.html', context)
@@ -146,7 +231,7 @@ def projects(request):
         nav_section='projects',
         page_heading='Projects',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Projects')],
-        meta_description='Highlighted programs delivered by Sahel Plast4ce.',
+        meta_description=f'Highlighted programs delivered by {SITE_NAME}.',
         projects=PROJECT_ITEMS,
     )
     return render(request, 'plast4ce/projects.html', context)
@@ -168,6 +253,17 @@ def project_detail(request, pk):
         meta_description=item['excerpt'],
     )
     return render(request, 'plast4ce/project_detail.html', context)
+
+def gallery(request):
+    context = _base_context(
+        nav_section='gallery',
+        page_heading='Gallery',
+        breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Gallery')],
+        meta_description=f'Photo and video gallery from {SITE_NAME}.',
+        gallery_images=GALLERY_IMAGES,
+        gallery_videos=GALLERY_VIDEOS,
+    )
+    return render(request, 'plast4ce/gallery.html', context)
 
 
 def blog(request):
@@ -204,7 +300,7 @@ def team(request):
         nav_section='team',
         page_heading='Team',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Team')],
-        meta_description='Meet the Sahel Plast4ce leadership and delivery team.',
+        meta_description=f'Meet the {SITE_NAME} leadership and delivery team.',
         team_members=TEAM_MEMBERS,
     )
     return render(request, 'plast4ce/team.html', context)
@@ -226,57 +322,6 @@ def team_detail(request, pk):
         meta_description=item['role'],
     )
     return render(request, 'plast4ce/team_detail.html', context)
-
-
-def shop(request):
-    context = _base_context(
-        nav_section='shop',
-        page_heading='Shop',
-        breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Shop')],
-        meta_description='Industrial supplies and kits curated by Sahel Plast4ce.',
-        products=SHOP_PRODUCTS,
-    )
-    return render(request, 'plast4ce/shop.html', context)
-
-
-def shop_detail(request, pk):
-    item = get_by_id(SHOP_PRODUCTS, pk)
-    if not item:
-        raise Http404('Product not found')
-    context = _base_context(
-        nav_section='shop',
-        product=item,
-        page_heading=item['title'],
-        breadcrumbs=[
-            ('plast4ce:plast4ce_home', 'Home'),
-            ('plast4ce:plast4ce_shop', 'Shop'),
-            (None, item['title']),
-        ],
-        meta_description=item['excerpt'],
-    )
-    return render(request, 'plast4ce/shop_detail.html', context)
-
-
-def cart(request):
-    context = _base_context(
-        nav_section='shop',
-        page_heading='Cart',
-        breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Cart')],
-        meta_description='Review items before checkout with Sahel Plast4ce.',
-        cart_lines=SHOP_PRODUCTS[:1],
-    )
-    return render(request, 'plast4ce/cart.html', context)
-
-
-def checkout(request):
-    context = _base_context(
-        nav_section='shop',
-        page_heading='Checkout',
-        breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Checkout')],
-        meta_description='Secure checkout flow for Sahel Plast4ce storefront demos.',
-        cart_lines=SHOP_PRODUCTS[:1],
-    )
-    return render(request, 'plast4ce/checkout.html', context)
 
 
 def handler404(request, exception):
