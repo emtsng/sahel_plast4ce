@@ -7,7 +7,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <img src="{% static member.image %}" class="img-fluid" alt="{{ member.name }}">
+                <div class="team-detail-photo">
+                    <img src="{% static member.image %}" class="img-fluid" alt="{{ member.name }}">
+                </div>
             </div>
             <div class="col-lg-7">
                 <h2>{{ member.name }}</h2>

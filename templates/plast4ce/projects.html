@@ -15,7 +15,11 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                     <div class="project-single">
                         <div class="project-img">
-                            <img src="{% static p.image %}" alt="">
+                            {% if p.image_url %}
+                            <img src="{{ p.image_url }}" alt="{{ p.title }}">
+                            {% else %}
+                            <img src="{% static p.image %}" alt="{{ p.title }}">
+                            {% endif %}
                         </div>
                         <div class="project-content">
                             <div class="project-title"><h4>{{ p.title }}</h4></div>

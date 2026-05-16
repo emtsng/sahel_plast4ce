@@ -7,7 +7,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <img src="{% static project.image %}" class="img-fluid mb-4" alt="">
+                {% if project.image_url %}
+                <img src="{{ project.image_url }}" class="img-fluid mb-4" alt="{{ project.title }}">
+                {% else %}
+                <img src="{% static project.image %}" class="img-fluid mb-4" alt="{{ project.title }}">
+                {% endif %}
                 <h2>{{ project.title }}</h2>
                 <p>{{ project.excerpt }}</p>
                 <p>{{ project.body }}</p>

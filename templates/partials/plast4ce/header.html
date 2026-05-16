@@ -51,9 +51,6 @@
                                         <a class="nav-link {% if nav_section == 'gallery' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_gallery' %}">Gallery</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {% if nav_section == 'blog' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_blog' %}">Blog</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a class="nav-link nav-link--has-submenu {% if nav_section == 'contact' or nav_section == 'faq' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_contact' %}" aria-haspopup="true">Contact <i class="las la-angle-down nav-dropdown-caret" aria-hidden="true"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{% url 'plast4ce:plast4ce_contact' %}">Get in touch</a></li>

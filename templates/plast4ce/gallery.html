@@ -14,9 +14,9 @@
         <div class="row justify-content-center">
             {% for img in gallery_images %}
             <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-4">
-                <a class="gallery-lightbox d-block" href="{% static img.src %}" title="{{ img.category }}">
+                <a class="gallery-lightbox d-block" href="{{ img.image_url }}" title="{{ img.category }}">
                     <div class="gallery-thumb">
-                        <img src="{% static img.src %}" class="img-fluid" alt="{{ img.alt }}">
+                        <img src="{{ img.image_url }}" class="img-fluid" alt="{{ img.alt }}">
                     </div>
                     <div class="gallery-meta mt-2">
                         <small class="text-muted">{{ img.category }}</small>

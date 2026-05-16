@@ -244,13 +244,36 @@
 		type: "iframe",
 	});
 
+	$(".gallery-lightbox").magnificPopup({
+		type: "image",
+		mainClass: "mfp-with-zoom",
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0, 1],
+		},
+		zoom: {
+			enabled: true,
+			duration: 300,
+			easing: "ease-in-out",
+		},
+		showCloseBtn: true,
+		closeBtnInside: false,
+		enableEscapeKey: true,
+		closeOnBgClick: true,
+	});
+
 	// Testimonial Carousel
 
 	$(".testimonial-wrap").owlCarousel({
 		items: 1,
 		margin: 30,
 		dots: true,
-		nav: false,
+		nav: true,
+		navText: [
+			"<i class='las la-angle-left' aria-hidden='true'></i>",
+			"<i class='las la-angle-right' aria-hidden='true'></i>",
+		],
 		loop: true,
 		autoplay: true,
 		smartSpeed: 700,
@@ -258,21 +281,21 @@
 		responsive: {
 			575: {
 				items: 1,
-				nav: false,
+				nav: true,
 				dots: false,
 			},
 
 			767: {
 				items: 1,
-				nav: false,
+				nav: true,
 			},
 
 			990: {
-				items: 2,
+				items: 1,
 				loop: true,
 			},
 			1200: {
-				items: 2,
+				items: 1,
 				dots: true,
 				loop: true,
 			},

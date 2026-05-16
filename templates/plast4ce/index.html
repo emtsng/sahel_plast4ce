@@ -112,7 +112,11 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                     <div class="project-single">
                         <div class="project-img">
-                            <img src="{% static p.image %}" alt="">
+                            {% if p.image_url %}
+                            <img src="{{ p.image_url }}" alt="{{ p.title }}">
+                            {% else %}
+                            <img src="{% static p.image %}" alt="{{ p.title }}">
+                            {% endif %}
                         </div>
                         <div class="project-content">
                             <div class="project-title">
@@ -143,51 +147,27 @@
                 </div>
             </div>
         </div>
-        {% for t in testimonials %}
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="testimonial-inner d-flex flex-column flex-md-row align-items-center gap-4">
-                    <div class="testimonial-img">
-                        <img src="{% static t.image %}" alt="">
-                    </div>
-                    <div class="testimonial-content text-start">
-                        <p>{{ t.quote }}</p>
-                        <div class="testimonial-meta">
-                            <h6>{{ t.name }}</h6>
-                            <span>{{ t.role }}</span>
+            <div class="col-lg-10">
+                <div class="testimonial-wrap owl-carousel">
+                    {% for t in testimonials %}
+                    <div class="testimonial-inner d-flex flex-column flex-md-row align-items-center gap-4">
+                        <div class="testimonial-img">
+                            <img src="{% static t.image %}" alt="{{ t.name }}">
+                        </div>
+                        <div class="testimonial-content text-start">
+                            <p>{{ t.quote }}</p>
+                            <div class="testimonial-meta">
+                                <h6>{{ t.name }}</h6>
+                                <span>{{ t.role }}</span>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
 </div>
 
-<div class="b -area section-padding">
-    <div class="container">
-        <div class="section-title text-center">
-            <h6>Blog</h6>
-            <h2>Latest insight</h2>
-        </div>
-        <div class="row justify-content-center">
-            {% for post in posts %}
-            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInLeft">
-                <div class="single-blog-item">
-                    <div class="blog-bg">
-                        <img src="{% static post.image %}" alt="">
-                        <span class="blog-date">{{ post.date_display|truncatewords:1 }}</span>
-                    </div>
-                    <div class="blog-content">
-                        <p class="blog-meta"><i class="las la-user-circle"></i>{{ post.author }}</p>
-                        <h5><a href="{% url 'plast4ce:plast4ce_blog_detail' post.id %}">{{ post.title }}</a></h5>
-                        <p>{{ post.excerpt }}</p>
-                        <a href="{% url 'plast4ce:plast4ce_blog_detail' post.id %}" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
 {% endblock %}

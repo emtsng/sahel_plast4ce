@@ -1,8 +1,3 @@
-"""
-Future CMS models (not migrated yet — design only).
-Wire views and admin when you are ready to persist content.
-"""
-
 from django.db import models
 
 
@@ -14,53 +9,30 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class Service(TimeStampedModel):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    summary = models.TextField(blank=True)
-    body = models.TextField(blank=True)
-
-    class Meta:
-        abstract = True
-
-
 class Project(TimeStampedModel):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    summary = models.TextField(blank=True)
-    featured_image = models.ImageField(upload_to='plast4ce/projects/', blank=True)
-
-    class Meta:
-        abstract = True
-
-
-class BlogPost(TimeStampedModel):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    author = models.CharField(max_length=120, blank=True)
     excerpt = models.TextField(blank=True)
     body = models.TextField(blank=True)
+    image = models.ImageField(upload_to='plast4ce/projects/')
+    is_published = models.BooleanField(default=True)
+    sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
-        abstract = True
+        ordering = ('sort_order', '-created_at')
+
+    def __str__(self):
+        return self.title
 
 
-class TeamMember(TimeStampedModel):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    role = models.CharField(max_length=200, blank=True)
-    bio = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='plast4ce/team/', blank=True)
-
-    class Meta:
-        abstract = True
-
-
-class Product(TimeStampedModel):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    sku = models.CharField(max_length=64, blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+class GalleryImage(TimeStampedModel):
+    category = models.CharField(max_length=100, blank=True)
+    alt_text = models.CharField(max_length=200, blank=True)
+    image = models.ImageField(upload_to='plast4ce/gallery/')
+    is_published = models.BooleanField(default=True)
+    sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
-        abstract = True
+        ordering = ('sort_order', '-created_at')
+
+    def __str__(self):
+        return self.alt_text or f'Gallery image {self.pk}'

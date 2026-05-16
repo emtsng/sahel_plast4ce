@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render
+from django.templatetags.static import static
 from apps.plast4ce.demo_content import (
     ABOUT_CONTEXT,
     ABOUT_INTRO,
@@ -7,7 +8,6 @@ from apps.plast4ce.demo_content import (
     WHY_PARTNER_HEADING_LINE1,
     WHY_PARTNER_HEADING_LINE2,
     WHY_PARTNER_ITEMS,
-    BLOG_POSTS,
     COMPANY_PROFILE_PDF,
     COMPANY_WEBSITE_LABEL,
     COMPANY_WEBSITE_URL,
@@ -27,10 +27,73 @@ from apps.plast4ce.demo_content import (
     GALLERY_VIDEOS,
     SITE_NAME,
     TAGLINE,
+    TESTIMONIALS,
     TEAM_MEMBERS,
     VISION_TEXT,
     get_by_id,
 )
+from apps.plast4ce.models import GalleryImage, Project
+
+
+def _project_image_url(item):
+    image = item.image
+    return image.url if image else ''
+
+
+def _gallery_image_url(item):
+    image = item.image
+    return image.url if image else ''
+
+
+def _project_to_dict(item):
+    return {
+        'id': item.id,
+        'title': item.title,
+        'excerpt': item.excerpt,
+        'body': item.body,
+        'image_url': _project_image_url(item),
+    }
+
+
+def _project_demo_to_dict(item):
+    return {
+        'id': item['id'],
+        'title': item['title'],
+        'excerpt': item['excerpt'],
+        'body': item.get('body', ''),
+        'image': item['image'],
+        'image_url': static(item['image']),
+    }
+
+
+def _gallery_demo_to_dict(item):
+    return {
+        'category': item['category'],
+        'alt': item['alt'],
+        'src': item['src'],
+        'image_url': static(item['src']),
+    }
+
+
+def _get_projects_data():
+    project_qs = Project.objects.filter(is_published=True)
+    if project_qs.exists():
+        return [_project_to_dict(item) for item in project_qs]
+    return [_project_demo_to_dict(item) for item in PROJECT_ITEMS]
+
+
+def _get_gallery_images_data():
+    image_qs = GalleryImage.objects.filter(is_published=True)
+    if image_qs.exists():
+        return [
+            {
+                'category': item.category or 'Gallery',
+                'alt': item.alt_text or item.category or 'Gallery image',
+                'image_url': _gallery_image_url(item),
+            }
+            for item in image_qs
+        ]
+    return [_gallery_demo_to_dict(item) for item in GALLERY_IMAGES]
 
 
 def _base_context(**extra):
@@ -50,6 +113,7 @@ def _base_context(**extra):
 
 
 def home(request):
+    projects_data = _get_projects_data()
     context = _base_context(
         nav_section='home',
         meta_description=(
@@ -83,20 +147,9 @@ def home(request):
             },
         ],
         services=SERVICE_ITEMS,
-        projects=PROJECT_ITEMS,
-        posts=BLOG_POSTS,
+        projects=projects_data,
         team_members=TEAM_MEMBERS,
-        testimonials=[
-            {
-                'quote': (
-                    'Sahel Plast4CE gives us traceable volumes and community-linked sourcing—aligned with '
-                    'our EPR reporting needs.'
-                ),
-                'name': 'Sustainability lead',
-                'role': 'Brand & packaging partner',
-                'image': 'plast4ce/img/testimonial/1.jpg',
-            },
-        ],
+        testimonials=TESTIMONIALS,
     )
     return render(request, 'plast4ce/index.html', context)
 
@@ -227,18 +280,25 @@ def service_detail(request, pk):
 
 
 def projects(request):
+    projects_data = _get_projects_data()
     context = _base_context(
         nav_section='projects',
         page_heading='Projects',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Projects')],
         meta_description=f'Highlighted programs delivered by {SITE_NAME}.',
-        projects=PROJECT_ITEMS,
+        projects=projects_data,
     )
     return render(request, 'plast4ce/projects.html', context)
 
 
 def project_detail(request, pk):
-    item = get_by_id(PROJECT_ITEMS, pk)
+    project = Project.objects.filter(pk=pk, is_published=True).first()
+    if project:
+        item = _project_to_dict(project)
+    else:
+        item = get_by_id(PROJECT_ITEMS, pk)
+        if item:
+            item = _project_demo_to_dict(item)
     if not item:
         raise Http404('Project not found')
     context = _base_context(
@@ -255,44 +315,16 @@ def project_detail(request, pk):
     return render(request, 'plast4ce/project_detail.html', context)
 
 def gallery(request):
+    gallery_images_data = _get_gallery_images_data()
     context = _base_context(
         nav_section='gallery',
         page_heading='Gallery',
         breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Gallery')],
         meta_description=f'Photo and video gallery from {SITE_NAME}.',
-        gallery_images=GALLERY_IMAGES,
+        gallery_images=gallery_images_data,
         gallery_videos=GALLERY_VIDEOS,
     )
     return render(request, 'plast4ce/gallery.html', context)
-
-
-def blog(request):
-    context = _base_context(
-        nav_section='blog',
-        page_heading='Blog',
-        breadcrumbs=[('plast4ce:plast4ce_home', 'Home'), (None, 'Blog')],
-        meta_description='Insights on recycling markets, traceability, and sustainable operations.',
-        posts=BLOG_POSTS,
-    )
-    return render(request, 'plast4ce/blog.html', context)
-
-
-def blog_detail(request, pk):
-    item = get_by_id(BLOG_POSTS, pk)
-    if not item:
-        raise Http404('Article not found')
-    context = _base_context(
-        nav_section='blog',
-        post=item,
-        page_heading=item['title'],
-        breadcrumbs=[
-            ('plast4ce:plast4ce_home', 'Home'),
-            ('plast4ce:plast4ce_blog', 'Blog'),
-            (None, item['title']),
-        ],
-        meta_description=item['excerpt'],
-    )
-    return render(request, 'plast4ce/blog_detail.html', context)
 
 
 def team(request):

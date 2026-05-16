@@ -2735,7 +2735,7 @@ input.form-control {
 }
 .gallery-lightbox:hover .gallery-thumb img,
 .gallery-video-link:hover .gallery-thumb img {
-  transform: scale(1.04);
+  transform: scale(1.1);
 }
 .gallery-video-card h6 {
   color: #024731;
@@ -2755,6 +2755,20 @@ input.form-control {
 .gallery-play i {
   font-size: 22px;
   margin-left: 2px;
+}
+
+.mfp-image-holder .mfp-close,
+.mfp-iframe-holder .mfp-close {
+  color: #fff;
+  opacity: 1;
+}
+
+.mfp-image-holder .mfp-content {
+  max-width: 96vw;
+}
+
+.mfp-image-holder .mfp-img {
+  max-height: 88vh;
 }
 
 .about-counter {
@@ -5263,6 +5277,8 @@ i.las.la-comments {
   position: relative;
   display: block;
   overflow: hidden;
+  aspect-ratio: 4 / 5;
+  width: 100%;
 }
 .team-img::before {
   position: absolute;
@@ -5286,6 +5302,9 @@ i.las.la-comments {
 
 .team-img img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition-delay: 0.1s;
   transition-timing-function: ease-in-out;
   transition-duration: 0.7s;
@@ -5383,6 +5402,25 @@ i.las.la-comments {
   font-weight: 500;
   margin: 0;
   line-height: 26px;
+}
+
+.team-detail-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.team-detail-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 767px) {
+  .team-detail-photo {
+    margin-bottom: 24px;
+  }
 }
 
 .accordion.faqs .card .card-header {
@@ -7418,13 +7456,21 @@ ul.contact-list li i {
 
 .contact-single-info h6 {
   font-size: 20px;
-  color: #fff;
+  color: #1a2a36;
 }
 
 .contact-single-info p {
-  color: #fff;
+  color: #1a2a36;
   font-size: 16px;
   margin: 0;
+}
+
+.contact-single-info p a {
+  color: #097e51;
+}
+
+.contact-single-info p a:hover {
+  color: #0b6b46;
 }
 
 .contact-single-info {

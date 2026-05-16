@@ -164,7 +164,7 @@ SERVICE_ITEMS = [
             'Safe sorting and baling at our stations in Gombe and Jalingo; crushing and washing with a '
             'roadmap to rPET and rPP pellet production.'
         ),
-        'image': 'plast4ce/img/service/service_1.jpg',
+        'image': 'plast4ce/img/service/service_2.jpg',
         'list_icon': 'plast4ce/img/service/bottle.png',
         'thumb': 'plast4ce/img/service-details/plastic_recycle.jpg',
         'hero_image': 'plast4ce/img/service-details/plastic_recycle.jpg',
@@ -181,7 +181,7 @@ SERVICE_ITEMS = [
             'Sorted bales, washed flakes, or pellets depending on your process and offtake needs—reducing '
             'dependence on imported virgin plastics.'
         ),
-        'image': 'plast4ce/img/service/service_1.jpg',
+        'image': 'plast4ce/img/service/service_3.jpg',
         'list_icon': 'plast4ce/img/service/bottle.png',
         'thumb': 'plast4ce/img/service-details/plastic_recycle.jpg',
         'hero_image': 'plast4ce/img/service-details/plastic_recycle.jpg',
@@ -199,7 +199,7 @@ SERVICE_ITEMS = [
             'Infrastructure and data producers and PROs can plug into—anchored in national plastic policy, '
             'EPR, and NDC commitments.'
         ),
-        'image': 'plast4ce/img/service/service_1.jpg',
+        'image': 'plast4ce/img/service/service_4.jpg',
         'list_icon': 'plast4ce/img/service/bottle.png',
         'thumb': 'plast4ce/img/service-details/plastic_recycle.jpg',
         'hero_image': 'plast4ce/img/service-details/plastic_recycle.jpg',
@@ -238,22 +238,42 @@ PROJECT_ITEMS = [
     },
 ]
 
-BLOG_POSTS = [
+TESTIMONIALS = [
     {
-        'id': 1,
-        'title': 'Why EPR and traceability matter for plastic recycling in Nigeria',
-        'excerpt': (
-            'Producers and importers face growing requirements to recover and recycle packaging—traceable '
-            'recycling services are part of the answer.'
+        'quote': (
+            'Sahel Plast4CE gives us traceable recovered volumes and stable quality specs, which makes our '
+            'EPR and packaging reporting much easier.'
         ),
-        'author': SITE_NAME,
-        'date_display': 'Dec 2025',
-        'image': 'plast4ce/img/blog/1.jpg',
-        'body': (
-            'The National Policy on Plastic Waste Management and EPR guidelines create a clear demand for '
-            'recyclers who can document volumes and quality. Aligning collection and processing with those '
-            'frameworks helps brands meet compliance while supporting national climate and circularity goals.'
+        'name': 'Amina Yusuf',
+        'role': 'Sustainability Manager, FMCG partner',
+        'image': 'plast4ce/img/team/abbas.png',
+    },
+    {
+        'quote': (
+            'Their team coordinates community collection professionally and keeps pricing transparent, so our '
+            'cluster network can plan volumes with confidence.'
         ),
+        'name': 'Haruna T. Zango',
+        'role': 'Community Cluster Lead',
+        'image': 'plast4ce/img/team/haruna.png',
+    },
+    {
+        'quote': (
+            'From pickup to processing updates, communication is clear and reliable. That consistency helps '
+            'us secure feedstock for recycling operations month after month.'
+        ),
+        'name': 'Engr. Abubakar Ahmad',
+        'role': 'Supply Chain Partner',
+        'image': 'plast4ce/img/team/sadiq.png',
+    },
+    {
+        'quote': (
+            'The programme creates practical income opportunities for youth while improving waste sorting '
+            'discipline in our communities.'
+        ),
+        'name': 'Ismail I. Abubakar',
+        'role': 'Project Delivery Partner',
+        'image': 'plast4ce/img/team/ismail.png',
     },
 ]
 
@@ -262,7 +282,7 @@ TEAM_MEMBERS = [
         'id': 1,
         'name': 'Prof. Shehu U. Hassan',
         'role': 'Founder and Chief Executive',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/prof.png',
         'bio': (
             'Leadership focused on building a resilient, inclusive circular plastics value chain across '
             'Nigeria’s key markets.'
@@ -272,49 +292,49 @@ TEAM_MEMBERS = [
         'id': 2,
         'name': 'Dr. Abubakar Abubakar',
         'role': 'Chief Financial Officer',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/drabubakar.png',
         'bio': 'Financial stewardship and governance for Plast4CE operations and growth.',
     },
     {
         'id': 3,
         'name': 'Haruna T. Zango',
         'role': 'Chief Commercial Officer',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/haruna.png',
         'bio': 'Commercial strategy and partnerships across the recycling and logistics network.',
     },
     {
         'id': 4,
         'name': 'Ridwan Jaafar',
         'role': 'Partnerships & Sustainability Manager',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/ridwan.png',
         'bio': 'Sustainability programmes and stakeholder alignment with EPR and climate objectives.',
     },
     {
         'id': 5,
         'name': 'Ismail I. Abubakar',
         'role': 'Project Manager',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/ismail.png',
         'bio': 'Delivery of collection, processing, and community programmes on the ground.',
     },
     {
         'id': 6,
         'name': 'Engr. Abubakar Ahmad',
         'role': 'Community & Supply Coordinator',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/sadiq.png',
         'bio': 'Community reclaimers networks, supply quality, and field coordination.',
     },
     {
         'id': 7,
         'name': 'Abbas S. Tafida',
         'role': 'Marketing Manager',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/abbas.png',
         'bio': 'Market development and communications for Plast4CE and partner programmes.',
     },
     {
         'id': 8,
         'name': 'Atiku M. Jafar',
         'role': 'Legal & Compliance',
-        'image': 'plast4ce/img/team/1.jpg',
+        'image': 'plast4ce/img/team/atiku.png',
         'bio': 'Legal and compliance support for operations and partnerships.',
     },
 ]
