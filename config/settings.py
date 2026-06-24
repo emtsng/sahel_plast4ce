@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bakery',
     'apps.plast4ce',
 ]
 
@@ -82,8 +83,26 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'build' / 'static'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Bakery configuration for static site generation
+BUILD_DIR = str(BASE_DIR / 'build')
+BAKERY_VIEWS = (
+    'apps.plast4ce.bakery_views.HomeView',
+    'apps.plast4ce.bakery_views.AboutView',
+    'apps.plast4ce.bakery_views.ContactView',
+    'apps.plast4ce.bakery_views.FAQView',
+    'apps.plast4ce.bakery_views.PricingView',
+    'apps.plast4ce.bakery_views.ServicesView',
+    'apps.plast4ce.bakery_views.ServiceDetailView',
+    'apps.plast4ce.bakery_views.ProjectsView',
+    'apps.plast4ce.bakery_views.ProjectDetailView',
+    'apps.plast4ce.bakery_views.GalleryView',
+    'apps.plast4ce.bakery_views.TeamView',
+    'apps.plast4ce.bakery_views.TeamDetailView',
+)

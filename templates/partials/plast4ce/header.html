@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 <div class="header-inner-box">
                     <div class="logo logo_navbar">
-                        <a class="navbar-brand" href="{% url 'plast4ce:plast4ce_home' %}">
+                        <a class="navbar-brand" href="/">
                             <img src="{% static 'plast4ce/img/logo.png' %}" alt="{{ site_name }}">
                         </a>
                     </div>
@@ -32,29 +32,29 @@
                             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                                 <ul class="navbar-nav m-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link {% if nav_section == 'home' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_home' %}">Home</a>
+                                        <a class="nav-link {% if nav_section == 'home' %}active{% endif %}" href="/">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link nav-link--has-submenu {% if nav_section == 'about' or nav_section == 'team' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_about' %}" aria-haspopup="true">About <i class="las la-angle-down nav-dropdown-caret" aria-hidden="true"></i></a>
+                                        <a class="nav-link nav-link--has-submenu {% if nav_section == 'about' or nav_section == 'team' %}active{% endif %}" href="/about/" aria-haspopup="true">About <i class="las la-angle-down nav-dropdown-caret" aria-hidden="true"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{% url 'plast4ce:plast4ce_about' %}">Who we are</a></li>
-                                            <li><a href="{% url 'plast4ce:plast4ce_team' %}">Team</a></li>
+                                            <li><a href="/about/">Who we are</a></li>
+                                            <li><a href="/team/">Team</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {% if nav_section == 'services' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_services' %}">Services</a>
+                                        <a class="nav-link {% if nav_section == 'services' %}active{% endif %}" href="/services/">Services</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {% if nav_section == 'projects' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_projects' %}">Projects</a>
+                                        <a class="nav-link {% if nav_section == 'projects' %}active{% endif %}" href="/projects/">Projects</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {% if nav_section == 'gallery' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_gallery' %}">Gallery</a>
+                                        <a class="nav-link {% if nav_section == 'gallery' %}active{% endif %}" href="/gallery/">Gallery</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link nav-link--has-submenu {% if nav_section == 'contact' or nav_section == 'faq' %}active{% endif %}" href="{% url 'plast4ce:plast4ce_contact' %}" aria-haspopup="true">Contact <i class="las la-angle-down nav-dropdown-caret" aria-hidden="true"></i></a>
+                                        <a class="nav-link nav-link--has-submenu {% if nav_section == 'contact' or nav_section == 'faq' %}active{% endif %}" href="/contact/" aria-haspopup="true">Contact <i class="las la-angle-down nav-dropdown-caret" aria-hidden="true"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{% url 'plast4ce:plast4ce_contact' %}">Get in touch</a></li>
-                                            <li><a href="{% url 'plast4ce:plast4ce_faq' %}">FAQ</a></li>
+                                            <li><a href="/contact/">Get in touch</a></li>
+                                            <li><a href="/faq/">FAQ</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -62,7 +62,7 @@
                         </nav>
                     </div>
                     <div class="header-btn">
-                        <a href="{% url 'plast4ce:plast4ce_contact' %}" class="main-btn primary">Get a quote</a>
+                        <a href="/contact/" class="main-btn primary">Get a quote</a>
                     </div>
                 </div>
             </div>
