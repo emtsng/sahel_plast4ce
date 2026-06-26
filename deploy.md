@@ -1,10 +1,48 @@
 # Deployment Guide for SAHEL Plast4CE Static Site
 
-This guide explains how to deploy the Django site as a static site to GitHub Pages.
+This guide explains how to deploy the Django site as a static site to GitHub Pages with custom domain `sahelplast4ce.com`.
 
 ## Overview
 
-The site is converted to static HTML using `django-bakery`. When you push changes to GitHub, GitHub Actions automatically builds and deploys the static site.
+The site is converted to static HTML using `django-bakery`. When you push changes to GitHub, GitHub Actions automatically builds and deploys the static site to GitHub Pages.
+
+## Custom Domain Configuration
+
+### Cloudflare DNS Settings
+
+Your domain `sahelplast4ce.com` is configured with Cloudflare. For GitHub Pages to work correctly, you need the following DNS records:
+
+**Current Configuration:**
+- `www.sahelplast4ce.com` → CNAME → `emtsng.github.io` (DNS only)
+
+**Required Configuration:**
+Add the following record in Cloudflare:
+
+| Type | Name | Content | Proxy Status |
+|------|------|---------|--------------|
+| CNAME | `sahelplast4ce.com` | `emtsng.github.io` | DNS only |
+
+**Important Notes:**
+- Set proxy status to **DNS only** (not proxied) for GitHub Pages
+- GitHub Pages does not support Cloudflare's proxy (orange cloud)
+- If you want Cloudflare proxying features, you'll need to configure SSL/TLS settings in Cloudflare to "Full" mode
+
+### GitHub Pages Settings
+
+1. Go to your GitHub repository
+2. Navigate to **Settings** → **Pages**
+3. Under **Custom domain**, enter: `sahelplast4ce.com`
+4. Click **Save**
+5. Enable **Enforce HTTPS** (recommended)
+
+### CNAME File
+
+The `CNAME` file in the repository root is already configured with:
+```
+sahelplast4ce.com
+```
+
+This tells GitHub Pages to serve the site at your custom domain.
 
 ## Making Content Updates
 
@@ -70,7 +108,7 @@ GitHub Actions will automatically:
 3. Deploy to GitHub Pages
 
 Wait 2-5 minutes for the deployment to complete. Your site will be live at:
-`https://[your-username].github.io/[repository-name]/`
+`https://sahelplast4ce.com`
 
 ## Quick Reference Commands
 

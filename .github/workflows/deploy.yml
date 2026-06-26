@@ -50,11 +50,7 @@ jobs:
         run: |
           python manage.py copy_media_to_build
 
-      - name: Copy static files
-        run: |
-          python manage.py collectstatic --noinput --clear
-
-      - name: Copy static to build
+      - name: Copy static files to build
         run: |
           cp -r static build/
 

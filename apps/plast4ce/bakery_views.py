@@ -464,7 +464,11 @@ class TeamDetailView(BuildableDetailView):
         for item in self.get_queryset():
             self.kwargs = {'pk': item['id']}
             self.object = self.get_object()
-            self.build()
+            # Prepare request and directory, then write the built file
+            self.request = self.create_request(self.get_build_path())
+            self.prep_directory(self.get_build_path())
+            target_path = path.join(settings.BUILD_DIR, self.get_build_path())
+            self.build_file(target_path, self.get_content())
 
     def get_context_data(self, **kwargs):
         item = self.object

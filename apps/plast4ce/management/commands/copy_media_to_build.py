@@ -1,5 +1,6 @@
 import os
 import shutil
+from pathlib import Path
 from django.core.management.base import BaseCommand
 from django.conf import settings
 
@@ -9,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         media_root = settings.MEDIA_ROOT
-        build_dir = settings.BUILD_DIR
+        build_dir = Path(settings.BUILD_DIR)
         build_media_dir = build_dir / 'media'
 
         self.stdout.write(f'Copying media files from {media_root} to {build_media_dir}')
