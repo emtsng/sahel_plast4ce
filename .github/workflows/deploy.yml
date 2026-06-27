@@ -54,6 +54,10 @@ jobs:
         run: |
           cp -r static build/
 
+      - name: Copy CNAME to build
+        run: |
+          cp CNAME build/ 2>/dev/null || echo "CNAME file not found"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
